@@ -23,7 +23,4 @@ def readDict(txt, params={}):
         res.append(tmp)
     return res
 
-
-RDBHandler = {}
-RDBHandler.readDict = readDict
-export RDBHandler
+__all__ = "readDict"
