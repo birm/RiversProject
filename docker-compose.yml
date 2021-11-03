@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  database:
+    image: mariadb:10.6
+    container_name: rivers-db
+  ingest:
+    build: ./RiversFetch/
+    depends_on:
+      - "database"
+    container_name: rivers-in
