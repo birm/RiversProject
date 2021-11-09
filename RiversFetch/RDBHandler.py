@@ -11,6 +11,7 @@ def readDict(txt, params={}):
         rec = txt[i].split("\t")
         tmp = {}
         for j in range(min(len(rec), len(headers))):
+            val = rec[j] # raw value
             hdr = headers[j]
             # ignore fields with header like #####_PARAM_cd
             if len(hdr.split("_")) == 3 and hdr.split("_")[0].isnumeric():
@@ -19,7 +20,13 @@ def readDict(txt, params={}):
             if len(hdr.split("_")) == 2 and hdr.split("_")[0].isnumeric():
                 hdr = hdr.split("_")[1]
                 hdr = params.get(hdr, hdr)
-            tmp[hdr] = rec[j]
+                # coerce our params to float if we can
+                try:
+                    val = float(val)
+                except (ValueError):
+                    print("FLOAT ERR", val)
+                    pass # leave it as a string
+            tmp[hdr] = val
         res.append(tmp)
     return res
 
