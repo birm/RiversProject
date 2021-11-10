@@ -15,19 +15,19 @@ public class Site {
 
   @Override
   public String toString() {
-    return String.format("Site[site_no=%d, name='%s']", site_no, name);
+    return String.format("Site[site_no=%s, name='%s']", site_no, name);
   }
 
   public String getSiteNo(){
     return site_no;
   }
-  public String Name(){
+  public String getName(){
     return name;
   }
-  public Float Latitude(){
+  public Float getLatitude(){
     return latitude;
   }
-  public Float Longitude(){
+  public Float getLongitude(){
     return longitude;
   }
 }

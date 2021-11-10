@@ -14,6 +14,8 @@ import java.util.List;
 public class RiversApplication {
 	@Autowired
 	private SiteRepository siteRepository;
+	@Autowired
+	private ObservationRepository observationRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RiversApplication.class, args);
@@ -26,5 +28,10 @@ public class RiversApplication {
 		public List < Site > getAllSites() {
 			return siteRepository.findAll();
 	}
+	@GetMapping("/observations")
+		public List < Observation > getAllObservations() {
+			return observationRepository.findAll();
+	}
+
 
 }

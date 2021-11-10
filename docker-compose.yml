@@ -17,10 +17,10 @@ services:
     container_name: rivers-in
     command: python getData.py
     environment:
-      #CREATE_TABLES: "ANY_VALUE_HERE_IS_TRUE"
-      #CREATE_DATABASE: "y"
-      #INSERT_SITES: "y"
-      #INSERT_OBSERVATIONS: "y"
+      CREATE_TABLES: "ANY_VALUE_HERE_IS_TRUE"
+      CREATE_DATABASE: "y"
+      INSERT_SITES: "y"
+      INSERT_OBSERVATIONS: "y"
       PRINT_DATA: "y"
   web:
     build:
