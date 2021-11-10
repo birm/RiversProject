@@ -7,7 +7,8 @@ def readDict(txt, params={}):
     res = []
     txt = [x for x in txt.split("\n") if x and x[0]!="#"]
     headers = txt[0].split("\t")
-    for i in range(1, len(txt)):
+    # index from 2: the value at 1 seems to be exclusively time values we don't care about
+    for i in range(2, len(txt)):
         rec = txt[i].split("\t")
         tmp = {}
         for j in range(min(len(rec), len(headers))):

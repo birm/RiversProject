@@ -8,7 +8,7 @@ import RDBHandler
 
 # api bases
 dataUrlBase = "https://waterdata.usgs.gov/ga/nwis/uv"
-siteUrlBase = "https://waterservices.usgs.gov/nwis/site/?format=rdb&sites=02336300&siteOutput=expanded&siteStatus=all"
+siteUrlBase = "https://waterservices.usgs.gov/nwis/site"
 # params are encoded. Use a dict for storage and translation
 paramCodes = {
     "00010": "Temperature",
