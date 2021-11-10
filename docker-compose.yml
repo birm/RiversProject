@@ -9,7 +9,7 @@ services:
       MARIADB_PASSWORD: user
       MARIADB_ROOT_PASSWORD: toor
   ingest:
-    build: ./RiversFetch/
+    build: ./Fetch/
     depends_on:
       - "database"
     container_name: rivers-in
@@ -20,3 +20,13 @@ services:
       #INSERT_SITES: "y"
       #INSERT_OBSERVATIONS: "y"
       PRINT_DATA: "y"
+  web:
+    build:
+      context: ./Web/
+      args:
+        JAR_FILE: ./target/rivers-0.0.1-SNAPSHOT.jar
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "database"
+    container_name: rivers-web
