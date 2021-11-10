@@ -25,6 +25,7 @@ def getData(siteNo, period=1):
     # * siteNo - site number from usgs
     # * period - number of days back to go from today
     url = dataUrlBase + "?format=rdb&site_no=" + str(siteNo) + "&period=" + str(period)
+    print(url)
     # let an exception here halt this
     data = requests.get(url).text
     return RDBHandler.readDict(data, paramCodes)

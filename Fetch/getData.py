@@ -10,7 +10,7 @@ import os
 
 # mapping helper function
 def mapData(mapping, data):
-    return {v:data[k] for (k,v) in mapping.items()}
+    return {v:data.get(k) for (k,v) in mapping.items()}
 
 
 sites = ["02336300"]
@@ -67,7 +67,7 @@ if (os.environ.get('CREATE_TABLES')):
         Temperature FLOAT,
         Precipitation FLOAT,
         Discharge FLOAT,
-        GageHeight FLOAT,
+        gage_height FLOAT,
         Conductance FLOAT,
         DO FLOAT,
         pH FLOAT,
@@ -117,7 +117,7 @@ if (os.environ.get('INSERT_OBSERVATIONS')):
     print("Trying to insert observations...")
     # fields mapping for sites
     mapping = {"site_no": "site_no", "datetime": "datetime", "Discharge": "Discharge",
-               "GageHeight": "GageHeight" , "Temperature": "Temperature",
+               "GageHeight": "gage_height" , "Temperature": "Temperature",
                "Conductance": "Conductance", "DO": "DO", "pH": "pH",
                "Turbidity": "Turbidity", "Precipitation": "Precipitation"}
     # flatten and map
