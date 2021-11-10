@@ -145,7 +145,6 @@ if (os.environ.get('INSERT_OBSERVATIONS')):
     cur.close()
     conn.close()
 if (os.environ.get('PRINT_DATA')):
-    print("printing data hopefully?")
     try:
         conn = mariadb.connect(
             user="root",
