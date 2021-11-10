@@ -8,6 +8,8 @@ services:
       MARIADB_USER: user
       MARIADB_PASSWORD: user
       MARIADB_ROOT_PASSWORD: toor
+    ports:
+      - "3306:3306"
   ingest:
     build: ./Fetch/
     depends_on:
