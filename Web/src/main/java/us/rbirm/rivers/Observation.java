@@ -13,7 +13,7 @@ public class Observation {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
-  private String site_no;
+  private String site;
   private Date Datetime;
   private Float Temperature;
   private Float Precipitation;
@@ -26,11 +26,11 @@ public class Observation {
 
   @Override
   public String toString() {
-    return String.format("Observation for[site_no=%s]", site_no);
+    return String.format("Observation for [site=%s]", site);
   }
 
-  public String getSiteNo(){
-    return site_no;
+  public String getSite(){
+    return site;
   }
   public Long getId(){
     return id;

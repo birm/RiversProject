@@ -62,7 +62,7 @@ if (os.environ.get('CREATE_TABLES')):
     try:
         cur.execute("""CREATE TABLE IF NOT EXISTS observation (
         id INT NOT NULL AUTO_INCREMENT,
-        site_no VARCHAR(8) NOT NULL,
+        site VARCHAR(8) NOT NULL,
         datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
         Temperature FLOAT,
         Precipitation FLOAT,
@@ -72,14 +72,24 @@ if (os.environ.get('CREATE_TABLES')):
         DO FLOAT,
         pH FLOAT,
         Turbidity FLOAT,
-        PRIMARY KEY (id)
+        PRIMARY KEY (id),
+        INDEX (site)
         )""")
         cur.execute("""CREATE TABLE IF NOT EXISTS site (
-        site_no VARCHAR(8) NOT NULL,
+        site VARCHAR(8) NOT NULL,
         name VARCHAR(50),
         latitude FLOAT,
         longitude FLOAT,
-        PRIMARY KEY (site_no)
+        PRIMARY KEY (site)
+        )""")
+        cur.execute("""CREATE TABLE IF NOT EXISTS prediction (
+        id INT NOT NULL AUTO_INCREMENT,
+        site VARCHAR(8) NOT NULL,
+        type VARCHAR(50),
+        value FLOAT,
+        datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        INDEX (site)
         )""")
     except mariadb.Error as e:
         print(f"Error: {e}")
@@ -89,7 +99,7 @@ if (os.environ.get('CREATE_TABLES')):
 if (os.environ.get('INSERT_SITES')):
     print("Trying to insert sites...")
     # fields mapping for sites
-    mapping = {"site_no": "site_no", "station_nm": "name", "dec_lat_va": "latitude", "dec_long_va": "longitude"}
+    mapping = {"site_no": "site", "station_nm": "name", "dec_lat_va": "latitude", "dec_long_va": "longitude"}
     data = [mapData(mapping, WaterServices.getSite(x)[-1]) for x in sites]
     try:
         conn = mariadb.connect(
@@ -116,7 +126,7 @@ if (os.environ.get('INSERT_SITES')):
 if (os.environ.get('INSERT_OBSERVATIONS')):
     print("Trying to insert observations...")
     # fields mapping for sites
-    mapping = {"site_no": "site_no", "datetime": "datetime", "Discharge": "Discharge",
+    mapping = {"site_no": "site", "datetime": "datetime", "Discharge": "Discharge",
                "GageHeight": "gage_height" , "Temperature": "Temperature",
                "Conductance": "Conductance", "DO": "DO", "pH": "pH",
                "Turbidity": "Turbidity", "Precipitation": "Precipitation"}
@@ -157,11 +167,11 @@ if (os.environ.get('PRINT_DATA')):
         print(f"Error connecting to MariaDB Platform: {e}")
         sys.exit(1)
     cur = conn.cursor()
-    cur.execute("SELECT site_no,name FROM site")
-    for site_no, name in cur:
-        print(site_no, name)
-    cur.execute("SELECT datetime,site_no FROM observation")
-    for datetime, site_no in cur:
-        print(datetime, site_no)
+    cur.execute("SELECT site,name FROM site")
+    for site, name in cur:
+        print(site, name)
+    cur.execute("SELECT datetime,site FROM observation")
+    for datetime, site in cur:
+        print(datetime, site)
     cur.close()
     conn.close()

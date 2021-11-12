@@ -16,6 +16,8 @@ public class RiversApplication {
 	private SiteRepository siteRepository;
 	@Autowired
 	private ObservationRepository observationRepository;
+	@Autowired
+	private PredictionRepository predictionRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RiversApplication.class, args);
@@ -32,6 +34,19 @@ public class RiversApplication {
 		public List < Observation > getAllObservations() {
 			return observationRepository.findAll();
 	}
+	@GetMapping("/observations/from")
+		public List < Observation > getSiteObservations(@RequestParam(value = "site") String site) {
+			return observationRepository.findBySite(site);
+	}
+	@GetMapping("/predictions")
+		public List < Prediction > getAllPredictions() {
+			return predictionRepository.findAll();
+	}
+	@GetMapping("/predictions/from")
+		public List < Prediction > getSitePredictions(@RequestParam(value = "site") String site) {
+			return predictionRepository.findBySite(site);
+	}
+
 
 
 }
