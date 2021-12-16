@@ -1,1 +1,4 @@
-<p>site works!</p>
+<span>{{site.name}} | {{site.prediction}}</span>
+<div *ngFor="let item of observations; index as i;">
+  <app-line-chart [data]="item"></app-line-chart>
+</div>

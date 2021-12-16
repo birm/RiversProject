@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-site',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteComponent implements OnInit {
 
-  constructor() { }
+  @Input() site = {"name":"Uninitailized", "prediction":-1}
+  observations = [[],[]];
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

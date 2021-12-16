@@ -1,1 +1,3 @@
-<p>grid works!</p>
+<div *ngFor="let item of sites; index as i;">
+  <app-site [site]="item"></app-site>
+</div>
