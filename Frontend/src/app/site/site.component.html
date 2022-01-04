@@ -1,4 +1,4 @@
-<span>{{site.name}} | {{site.prediction}}</span>
-<div *ngFor="let item of observations; index as i;">
-  <app-line-chart [data]="item"></app-line-chart>
+<span>{{site.name}} | {{site.site}}</span>
+<div *ngFor="let field of chartTypes; index as i;">
+  <app-line-chart site={{site.site}} field={{field}}></app-line-chart>
 </div>

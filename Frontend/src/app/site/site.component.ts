@@ -1,5 +1,8 @@
 import {Component, Input, OnInit } from '@angular/core';
 
+import {ObservationService} from '../observation.service';
+import {Observation} from '../observation'
+
 @Component({
   selector: 'app-site',
   templateUrl: './site.component.html',
@@ -7,12 +10,21 @@ import {Component, Input, OnInit } from '@angular/core';
 })
 export class SiteComponent implements OnInit {
 
-  @Input() site = {"name":"Uninitailized", "prediction":-1}
-  observations = [[],[]];
-  constructor() {
+  public chartTypes = ["gage_height", "precipitation", "turbidity"];
+
+  @Input() site = {"name":"Uninitailized", "latitude":-1, "longitude": -1, "site": -1}
+
+  public observations: Observation[] = [];
+  public chartData = {};
+
+  constructor(private observationService: ObservationService) {
+  }
+  getObvservations(){
+    this.observations = this.observationService.getObvservationsBySite(this.site.site);
   }
 
   ngOnInit(): void {
+    this.getObvservations();
   }
 
 }

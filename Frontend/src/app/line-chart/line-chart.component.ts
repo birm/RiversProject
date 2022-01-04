@@ -1,4 +1,5 @@
 import {Component, Input, OnInit } from '@angular/core';
+import {ObservationService} from '../observation.service'
 
 @Component({
   selector: 'app-line-chart',
@@ -7,12 +8,20 @@ import {Component, Input, OnInit } from '@angular/core';
 })
 export class LineChartComponent implements OnInit {
 
-  @Input() data = [];
-  @Input() name = "unkown";
+  @Input() site = "-1";
+  @Input() field = "unkown";
 
-  constructor() { }
+  public chartData : any[] = []
+
+  constructor(private observationService: ObservationService) { }
+
+  getChartData(){
+    this.chartData = this.observationService.getObservationsBySiteAndType(parseInt(this.site), this.field);
+    console.log(this)
+  }
 
   ngOnInit(): void {
+    this.getChartData();
   }
 
 }

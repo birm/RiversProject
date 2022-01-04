@@ -1,4 +1,6 @@
 import {Component, Input, OnInit } from '@angular/core';
+import {SiteService} from '../site.service';
+import {Site} from '../site'
 
 @Component({
   selector: 'app-grid',
@@ -6,12 +8,15 @@ import {Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./grid.component.css']
 })
 export class GridComponent implements OnInit {
+  public sites: Site[] = [];
+  getSites(): void {
+    this.sites = this.siteService.getSites();
+  }
 
-  @Input() sites = [{"name":"North Peachtree", "prediction":14.5},{"name":"South Peachtree", "prediction":1.2}];
-
-  constructor() { }
+  constructor(private siteService: SiteService) { }
 
   ngOnInit(): void {
+    this.getSites();
   }
 
 }
