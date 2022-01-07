@@ -1,5 +1,7 @@
 import {Component, Input, OnInit } from '@angular/core';
-import {ObservationService} from '../observation.service'
+import {ObservationService} from '../observation.service';
+import { ChartDataset, ChartOptions } from 'chart.js';
+import 'chartjs-adapter-moment';
 
 @Component({
   selector: 'app-line-chart',
@@ -11,13 +13,24 @@ export class LineChartComponent implements OnInit {
   @Input() site = "-1";
   @Input() field = "unkown";
 
-  public chartData : any[] = []
+  public lineChartLabels : any[] = [];
+  public chartData : any[] = [];
+  public canvas: any;
+  public chartConfig : (ChartOptions & { annotation?: any }) = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: {
+        type: 'timeseries'
+      }
+    }
+  }
 
   constructor(private observationService: ObservationService) { }
 
   getChartData(){
     this.chartData = this.observationService.getObservationsBySiteAndType(parseInt(this.site), this.field);
-    console.log(this)
+    this.lineChartLabels = this.chartData.map(x=>x.x);
   }
 
   ngOnInit(): void {

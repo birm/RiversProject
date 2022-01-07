@@ -1,1 +1,10 @@
-<p>(line chart for site {{site}} and field {{field}} and data {{chartData}})</p>
+<p>(line chart for site {{site}} and field {{field}} and data {{chartData | json}})</p>
+<div>
+  <canvas baseChart
+    height="100 px"
+    [datasets]="[{ data: chartData, label: 'Series' }]"
+    [labels]="lineChartLabels"
+    [options]="chartConfig"
+    [legend]="false"
+    [type]="'line'"> </canvas>
+</div>
