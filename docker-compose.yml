@@ -27,8 +27,19 @@ services:
       context: ./Web/
       args:
         JAR_FILE: ./target/rivers-0.0.1-SNAPSHOT.jar
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://rivers-db:3306/rivers?useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=toor
     ports:
       - "8080:8080"
     depends_on:
       - "database"
     container_name: rivers-web
+  front:
+    build: ./Frontend/
+    ports:
+      - "8081:80"
+    depends_on:
+      - "web"
+    container_name: rivers-front
