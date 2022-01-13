@@ -1,5 +1,10 @@
 :host
 {
   display: block;
-  outline: 2px dashed black;
+  padding: 5px;
+  margin: 5px;
+  min-width: 400px;
+  background-color: lightgrey;
+  border-radius: 5px;
+  flex-shrink: 1;
 }
