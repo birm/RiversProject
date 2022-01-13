@@ -1,6 +1,7 @@
 # Rivers Project
 Analysis on Rivers, Webapp
-WIP
+
+![Rivers Dashboard](rivers_ui_demo.png)
 
 ## Components
 
@@ -17,7 +18,6 @@ APIs for the Database (Java Spring/Boot)
 Web Frontend for the project (Angular)
 
 ## TODO
-* !! Make the frontend
 * Prediction ML Service
 * Neaten python scripts?
 * Add indexes as a separate action from fetch?
