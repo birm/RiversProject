@@ -23,6 +23,14 @@ services:
       INSERT_SITES: "y"
       INSERT_OBSERVATIONS: "y"
       PRINT_DATA: "y"
+  predict:
+    build: ./Predict/
+    depends_on:
+      - "database"
+    container_name: rivers-predict
+    command: python PredictHeight.py
+    environment:
+      ADD_TO_DB: "y"
   web:
     build:
       context: ./Web/

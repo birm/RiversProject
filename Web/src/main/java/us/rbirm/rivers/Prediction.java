@@ -14,28 +14,52 @@ public class Prediction {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   private String site;
-  private String type;
-  private Float value;
-  private Date datetime;
+  private Date Datetime;
+  private Float Temperature;
+  private Float Precipitation;
+  private Float Discharge;
+  private Float GageHeight;
+  private Float Conductance;
+  private Float DO;
+  private Float pH;
+  private Float Turbidity;
 
   @Override
   public String toString() {
-    return String.format("Prediction[site=%s, type='%s']", site, type);
+    return String.format("Prediction for [site=%s]", site);
   }
 
-  public Long getId(){
-    return id;
-  }
   public String getSite(){
     return site;
   }
-  public String getType(){
-    return type;
-  }
-  public Float getValue(){
-    return value;
+  public Long getId(){
+    return id;
   }
   public Date getDatetime(){
-    return datetime;
+    return Datetime;
+  }
+  public Float getTemperature(){
+    return Temperature;
+  }
+  public Float getPrecipitation(){
+    return Precipitation;
+  }
+  public Float getDischarge(){
+    return Discharge;
+  }
+  public Float getGageHeight(){
+    return GageHeight;
+  }
+  public Float getConductance(){
+    return Conductance;
+  }
+  public Float getDO(){
+    return DO;
+  }
+  public Float getpH(){
+    return pH;
+  }
+  public Float getTurbidity(){
+    return Turbidity;
   }
 }

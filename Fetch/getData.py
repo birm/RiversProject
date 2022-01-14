@@ -107,9 +107,15 @@ if (os.environ.get('CREATE_TABLES')):
         cur.execute("""CREATE TABLE IF NOT EXISTS prediction (
         id INT NOT NULL AUTO_INCREMENT,
         site VARCHAR(8) NOT NULL,
-        type VARCHAR(50),
-        value FLOAT,
         datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
+        Temperature FLOAT,
+        Precipitation FLOAT,
+        Discharge FLOAT,
+        gage_height FLOAT,
+        Conductance FLOAT,
+        DO FLOAT,
+        pH FLOAT,
+        Turbidity FLOAT,
         PRIMARY KEY (id),
         INDEX (site)
         )""")

@@ -6,7 +6,7 @@ Analysis on Rivers, Webapp
 ## Components
 
 ### Fetch
-Data Ingest Process and Utils (Python)
+Data Ingest Process, Prediction Machine Learning service, and related Utils (Python, Keras)
 
 ### Database
 Image only, stores the data. (MariaDB)
@@ -16,8 +16,3 @@ APIs for the Database (Java Spring/Boot)
 
 ### Frontend
 Web Frontend for the project (Angular)
-
-## TODO
-* Prediction ML Service
-* Neaten python scripts?
-* Add indexes as a separate action from fetch?

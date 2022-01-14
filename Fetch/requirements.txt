@@ -1,2 +1,6 @@
 requests
 mariadb
+keras
+numpy
+scikit-learn
+pandas
