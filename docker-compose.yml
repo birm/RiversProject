@@ -17,6 +17,7 @@ services:
     container_name: rivers-in
     command: python getData.py
     environment:
+      CLEAR_DATABASE_FIRST: "y"
       CREATE_TABLES: "ANY_VALUE_HERE_IS_TRUE"
       CREATE_DATABASE: "y"
       INSERT_SITES: "y"

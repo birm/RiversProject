@@ -13,13 +13,35 @@ def mapData(mapping, data):
     return {v:data.get(k) for (k,v) in mapping.items()}
 
 
-sites = ["02336300"]
+sites = ["02336300", "02336030", "02336093", "02336106"]
 print(WaterServices)
 res = [WaterServices.getData(x) for x in sites]
 # print(res)
 print([WaterServices.getSite(x) for x in sites])
 
 # connect to db
+
+# clear db if asked
+if (os.environ.get('CLEAR_DATABASE_FIRST')):
+    print("Trying to clear database...")
+    try:
+        conn = mariadb.connect(
+            user="root",
+            password="toor",
+            host="rivers-db",
+            port=3306
+        )
+    except mariadb.Error as e:
+        print(f"Error connecting to MariaDB Platform: {e}")
+        sys.exit(1)
+    cur = conn.cursor()
+    # create db and tables (TODO -- better way to do db patching than editing python code)
+    try:
+        cur.execute("DROP DATABASE rivers")
+    except mariadb.Error as e:
+        print(f"Error: {e}")
+    cur.close()
+    conn.close()
 
 # create db if not exists
 if (os.environ.get('CREATE_DATABASE')):
