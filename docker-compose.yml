@@ -11,7 +11,7 @@ services:
     ports:
       - "3306:3306"
   ingest:
-    build: ./Fetch/
+    build: ./Ingest/
     depends_on:
       - "database"
     container_name: rivers-in
