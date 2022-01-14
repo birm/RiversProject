@@ -5,7 +5,7 @@ export class Observation {
   temperature?: number = -1;
   precipitation?: number = -1;
   discharge?: number = -1;
-  gage_height?: number = -1;
+  gageHeight?: number = -1;
   conductance?: number = -1;
   dissolvedOxygen?: number = -1;
   pH?: number = -1;

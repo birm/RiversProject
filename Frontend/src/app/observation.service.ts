@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ObservationService {
   constructor(private http: HttpClient) { }
   public observationsUrl = "/api/observations"
-  private defaultData = [{id:1, site:"-1", gage_height:14, datetime:"01/01/2022 00:01:00"}, {id:1, site:"-1", gage_height:15, datetime:"01/01/2022 00:02:00"}, {id:1, site:"-1", gage_height:13, datetime:"01/01/2022 00:03:00"}]
+  private defaultData = [{id:1, site:"-1", gageHeight:14, datetime:"01/01/2022 00:01:00"}, {id:1, site:"-1", gageHeight:15, datetime:"01/01/2022 00:02:00"}, {id:1, site:"-1", gageHeight:13, datetime:"01/01/2022 00:03:00"}]
 
   private handleError<T>(result?: T){
     return (error: any): Observable<T> => {

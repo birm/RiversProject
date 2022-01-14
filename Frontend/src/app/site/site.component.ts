@@ -10,7 +10,7 @@ import {Observation} from '../observation'
 })
 export class SiteComponent implements OnInit {
 
-  public chartTypes = ["gage_height", "precipitation", "turbidity"];
+  public chartTypes = ["gageHeight", "precipitation", "turbidity", "conductance"];
 
   @Input() site = {"name":"Uninitailized", "latitude":-1, "longitude": -1, "site": "-1"}
 
