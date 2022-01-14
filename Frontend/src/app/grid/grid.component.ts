@@ -1,6 +1,7 @@
 import {Component, Input, OnInit } from '@angular/core';
 import {SiteService} from '../site.service';
-import {Site} from '../site'
+import {Site} from '../site';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-grid',
@@ -10,7 +11,10 @@ import {Site} from '../site'
 export class GridComponent implements OnInit {
   public sites: Site[] = [];
   getSites(): void {
-    this.sites = this.siteService.getSites();
+    this.siteService.getSites().subscribe(
+      sites => {
+        this.sites = sites
+      });
   }
 
   constructor(private siteService: SiteService) { }

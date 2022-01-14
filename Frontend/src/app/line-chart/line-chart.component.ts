@@ -29,8 +29,10 @@ export class LineChartComponent implements OnInit {
   constructor(private observationService: ObservationService) { }
 
   getChartData(){
-    this.chartData = this.observationService.getObservationsBySiteAndType(parseInt(this.site), this.field);
-    this.lineChartLabels = this.chartData.map(x=>x.x);
+    this.observationService.getObvservationsBySite(this.site).subscribe(z=>{
+      this.chartData = z.map(i=>{ return {x:i.datetime, y:i[this.field as keyof typeof i]}});
+      this.lineChartLabels = z.map(i=>i.datetime);
+    });
   }
 
   ngOnInit(): void {

@@ -12,7 +12,7 @@ export class SiteComponent implements OnInit {
 
   public chartTypes = ["gage_height", "precipitation", "turbidity"];
 
-  @Input() site = {"name":"Uninitailized", "latitude":-1, "longitude": -1, "site": -1}
+  @Input() site = {"name":"Uninitailized", "latitude":-1, "longitude": -1, "site": "-1"}
 
   public observations: Observation[] = [];
   public chartData = {};
@@ -20,7 +20,10 @@ export class SiteComponent implements OnInit {
   constructor(private observationService: ObservationService) {
   }
   getObvservations(){
-    this.observations = this.observationService.getObvservationsBySite(this.site.site);
+    this.observationService.getObvservationsBySite(this.site.site).subscribe(
+      observations => {
+        this.observations = observations
+      });
   }
 
   ngOnInit(): void {
