@@ -2,7 +2,7 @@
 <div>
   <canvas baseChart
     height="100 px"
-    [datasets]="[{ data: chartData, label: 'Series' }]"
+    [datasets]="[{ data: chartData, label: 'Recorded Data' }, { data: predictChartData, label: 'Predicted Data' }]"
     [labels]="lineChartLabels"
     [options]="chartConfig"
     [legend]="false"

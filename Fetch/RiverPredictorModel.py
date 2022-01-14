@@ -45,7 +45,7 @@ def inverse_transform(y_test, yhat, scaler):
  y_test_inverse = scaler.inverse_transform(y_test_reshaped)
  return yhat_inverse, y_test_inverse
 
-def getNextPredict(site):
+def predictForSite(site):
     data = WaterServices.getData(site)
     df = pandas.DataFrame(data)
     df.sort_values(by='datetime')
@@ -72,30 +72,6 @@ def getNextPredict(site):
 
     return results
 
-
-# script part
-sites = ["02336300", "02336030", "02336093", "02336106"]
-data = [getNextPredict(x) for x in sites]
-if (os.environ.get('ADD_TO_DB')):
-    print("Trying to insert predictions...")
-    try:
-        conn = mariadb.connect(
-            user="root",
-            password="toor",
-            host="localhost",
-            port=3306,
-            database="rivers",
-            autocommit=True
-        )
-    except mariadb.Error as e:
-        print(f"Error connecting to MariaDB Platform: {e}")
-        sys.exit(1)
-    cur = conn.cursor()
-    for record in data:
-        try:
-            sql_str = "INSERT INTO prediction (" + ",".join(record.keys()) + ") VALUES (" + ",".join(["?"]*len(record.keys())) + ")"
-            cur.execute(sql_str, tuple(record.values()))
-        except mariadb.Error as e:
-            print(f"Error: {e}")
-    cur.close()
-    conn.close()
+RiverPredictorModel = {}
+RiverPredictorModel['predictForSite'] = predictForSite
+__all__ = ["predictForSite", "getSite", "getData"]

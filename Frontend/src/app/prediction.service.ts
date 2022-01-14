@@ -11,7 +11,7 @@ export class PredictionService {
 
   constructor(private http: HttpClient) { }
   public predictionsUrl = "/api/predictions"
-  private defaultData = [{id:1, site:"-1", gageHeight:19, datetime:"01/01/2022 00:01:00"}]
+  private defaultData = [{id:1, site:"-1", gageHeight:19, datetime:"01/01/2022 00:04:00"}, {id:1, site:"-1", gageHeight:22, datetime:"01/01/2022 00:05:00"}]
 
   private handleError<T>(result?: T){
     return (error: any): Observable<T> => {

@@ -3,6 +3,7 @@
 import WaterServices
 import mariadb
 import os
+from RiverPredictorModel import predictForSite
 
 # list of site numbers from /somewhere/
 # this list for now
@@ -182,6 +183,34 @@ if (os.environ.get('INSERT_OBSERVATIONS')):
 
     cur.close()
     conn.close()
+
+# script part
+if (os.environ.get('ADD_TO_DB')):
+    print("Trying to do predictions...")
+    data = [item for sublist in [getNextPredict(x) for x in sites] for item in sublist]
+    print("Trying to insert predictions...")
+    try:
+        conn = mariadb.connect(
+            user="root",
+            password="toor",
+            host="localhost",
+            port=3306,
+            database="rivers",
+            autocommit=True
+        )
+    except mariadb.Error as e:
+        print(f"Error connecting to MariaDB Platform: {e}")
+        sys.exit(1)
+    cur = conn.cursor()
+    for record in data:
+        try:
+            sql_str = "INSERT INTO prediction (" + ",".join(record.keys()) + ") VALUES (" + ",".join(["?"]*len(record.keys())) + ")"
+            cur.execute(sql_str, tuple(record.values()))
+        except mariadb.Error as e:
+            print(f"Error: {e}")
+    cur.close()
+    conn.close()
+
 if (os.environ.get('PRINT_DATA')):
     try:
         conn = mariadb.connect(
