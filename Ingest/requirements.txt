@@ -2,5 +2,5 @@ requests
 mariadb
 keras
 numpy
-scikit-learn
+sklearn
 pandas

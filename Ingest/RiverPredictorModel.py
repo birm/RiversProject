@@ -67,8 +67,9 @@ def predictForSite(site):
     new_time = datetime.datetime.strptime(df.iloc[-1]['datetime'], "%Y-%m-%d %H:%M") + datetime.timedelta(minutes=15)
     results = []
     for i in range(len(yhat_inverse)):
-        new_time = datetime.datetime.strptime(df.iloc[i]['datetime'], "%Y-%m-%d %H:%M") + datetime.timedelta(minutes=15)
-        results.append({"gageHeight": yhat_inverse[i,0], "Precipitation": yhat_inverse[i,1], "Temperature": yhat_inverse[i,2], "Turbidity": yhat_inverse[i,3], "datetime": new_time, "site": site})
+        diff = len(df) - len(yhat_inverse)
+        new_time = datetime.datetime.strptime(df.iloc[i+diff]['datetime'], "%Y-%m-%d %H:%M") + datetime.timedelta(minutes=15)
+        results.append({"gage_height": float(yhat_inverse[i,0]), "Precipitation": float(yhat_inverse[i,1]), "Temperature": float(yhat_inverse[i,2]), "Turbidity": float(yhat_inverse[i,3]), "datetime": new_time, "site": site})
 
     return results
 

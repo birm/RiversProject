@@ -22,8 +22,7 @@ services:
       CREATE_DATABASE: "y"
       INSERT_SITES: "y"
       INSERT_OBSERVATIONS: "y"
-      PRINT_DATA: "y"
-      DO_PREDICT: "y"
+      DO_PREDICTIONS: "y"
   web:
     build:
       context: ./Web/
